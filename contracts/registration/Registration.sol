@@ -99,7 +99,7 @@ contract Registration {
         imx.withdrawNftTo(starkKey, assetType, tokenId, recipient);
     }
 
-    function regsiterAndWithdrawAndMint(
+    function registerAndWithdrawAndMint(
         address ethKey,
         uint256 starkKey,
         bytes calldata signature,
