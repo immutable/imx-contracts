@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "compile": "npx hardhat compile",
-    "simple-deploy-ropsten": "npx hardhat run deploy/simple_asset.js --network ropsten",
-    "deploy-registration": "yarn hardhat run deploy/registration.ts"
+    "simple-deploy-ropsten": "npx hardhat run deploy/simple_asset.js --network ropsten"
   },
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^2.1.4",
