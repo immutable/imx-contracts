@@ -84,7 +84,7 @@ library Bytes {
                 result = result * 10 + (val - 48);
             } else {
                 // invalid character, expecting integer input
-                revert("invalid input, only numbers allowed")
+                revert("invalid input, only numbers allowed");
             }
         }
         return result;
