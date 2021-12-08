@@ -1,19 +1,31 @@
 # Immutable X Contracts
 
-Installation: `npm install @imtbl/imx-contracts` or `yarn add @imtbl/imx-contracts`.
-
 | Name         | Public Test (Ropsten)                                                                                                         | Production (Mainnet)                                                                                                  |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Core         | [0x4527be8f31e2ebfbef4fcaddb5a17447b27d2aef](https://ropsten.etherscan.io/address/0x4527be8f31e2ebfbef4fcaddb5a17447b27d2aef) | [0x5FDCCA53617f4d2b9134B29090C87D01058e27e9](https://etherscan.io/address/0x5FDCCA53617f4d2b9134B29090C87D01058e27e9) |
 | Registration | [0x68e6217A0989c5e2CBa95142Ada69bA1cE2cdCA9](https://ropsten.etherscan.io/address/0x68e6217A0989c5e2CBa95142Ada69bA1cE2cdCA9) | [0xB28816338Bcc7Eb4dC1e0c09341076Db0b97f92F](https://etherscan.io/address/0xB28816338Bcc7Eb4dC1e0c09341076Db0b97f92F) |
 
-# L2 Minting
+## Get started
 
-Immutable X is the only NFT scaling protocol that supports minting assets on L2, and having those assets be trustlessly withdrawable to Ethereum L1. To enable this, before you can mint on L2, you need to deploy an IMX-compatible ERC721 contract as the potential L1 home for these assets. Luckily, making an ERC721 contract IMX-compatible is easy!
+Clone this repository
 
-### No Code Usage (Test Environment Only)
+```
+https://github.com/immutable/imx-contracts.git
+```
 
-In the test environment, deploying an ERC721 contract which is compatible with Immutable X is extremely easy. First, update the `.env` file, setting:
+Install packages
+
+```
+yarn
+```
+
+Setup environment variables
+
+```
+cp .env.example .env
+```
+
+Add the following:
 
 - `CONTRACT_OWNER_ADDRESS`
 - `CONTRACT_NAME`
@@ -21,7 +33,15 @@ In the test environment, deploying an ERC721 contract which is compatible with I
 - `ETHERSCAN_API_KEY`
   - which can be obtained from [your Etherscan account.](https://etherscan.io/myapikey)
 
-Then, just run `yarn run simple-deploy-ropsten`.
+## L2 Minting
+
+Immutable X is the only NFT scaling protocol that supports minting assets on L2, and having those assets be trustlessly withdrawable to Ethereum L1. To enable this, before you can mint on L2, you need to deploy an IMX-compatible ERC721 contract as the potential L1 home for these assets. Luckily, making an ERC721 contract IMX-compatible is easy!
+
+### Deploying a smart contract to Ropsten (test Ethereum network)
+
+In the test environment, deploying an ERC721 contract which is compatible with Immutable X is extremely easy.
+
+Run `yarn run deploy-mintable --network ropsten`.
 
 ### Basic Usage
 

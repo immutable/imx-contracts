@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "compile": "npx hardhat compile",
-    "simple-deploy-ropsten": "npx hardhat run deploy/simple_asset.js --network ropsten",
+    "compile": "yarn hardhat compile",
+    "deploy-mintable": "yarn hardhat run deploy/mintable.ts",
     "deploy-registration": "yarn hardhat run deploy/registration.ts"
   },
   "dependencies": {
