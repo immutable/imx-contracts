@@ -65,7 +65,8 @@ contract YourContract is IMintable, Ownable {
         bytes calldata mintingBlob
     ) external override {
         // TODO: make sure only Immutable X can call this function
-        // TODO: mint the token!
+        // TODO: mint the token! 
+        
     }
 
 }
