@@ -20,7 +20,7 @@ async function main() {
 }
 
 function getMintingBlob(tokenId: number, blueprint: string) {
-    return ethers.utils.toUtf8Bytes(`{${tokenId.toString()}}:{${blueprint}`);
+    return ethers.utils.toUtf8Bytes(`{${tokenId.toString()}}:{${blueprint}}`);
 }
 
 main()
