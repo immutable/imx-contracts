@@ -74,11 +74,11 @@ contract YourContract is IMintable, Ownable {
 `Registration.sol` & `IMX.sol` is for reference purposes if you choose to offer these functions in your own smart contracts and is not required if you only want to deploy an ERC721.
 
 
+### Deploy to ropsten
+Change to dev/mainnet if required
+
 ### Manually verifying registration contract
 
-
-Deploy to ropsten, change to dev/mainnet if required
-=======
 Verification with Etherscan should happen automatically within a few minutes of contract deployment, but if it fails you can run it manually, eg
 
 ```
