@@ -1,83 +1,65 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@imtbl/imx-contracts/contracts/IMintable.sol";
-import "@imtbl/imx-contracts/contracts/Mintable.sol";
+import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
+import '@openzeppelin/contracts/access/Ownable.sol';
+import '@openzeppelin/contracts/utils/Strings.sol';
+import '@imtbl/imx-contracts/contracts/IMintable.sol';
+import '@imtbl/imx-contracts/contracts/Mintable.sol';
 
-contract PeaceKoalasTest is ERC721, ERC721Enumerable, ERC721URIStorage, Mintable {
-    string private _baseUrl;
+contract PeaceKoalasTest is ERC721, Ownable, IMintable{
+    // Events
+    event AssetMinted(address to, uint256 id, bytes blueprint);
+    event UpdatedBaseURI(string URI);
+    event UpdatedImxURI(address imx);
 
-    constructor(
-        address _owner,
-        string memory _name,
-        string memory _symbol,
-        address _imx
-    ) ERC721(_name, _symbol) Mintable(_owner, _imx) {
-        _baseUrl = "https://nft-for-ukraine-five.vercel.app/api/metadata/";
+    // Addresses
+    address public imx;
+
+    // String
+    string public baseURI;
+
+    // Mappings
+    mapping(uint256 => string) private _tokenURI;
+    mapping(uint256 => bytes) public blueprints;
+
+    modifier onlyIMX() {
+        require(msg.sender == imx, "PeaceKoalasTest: Function can only be called by IMX");
+        _;
     }
 
-    function _mintFor(
-        address user,
-        uint256 id,
-        bytes memory
-    ) internal override {
-        _safeMint(user, id);
+    constructor(address _imx) ERC721("PeaceKoalasTest", "PKT") {
+        require(_imx != address(0x0), 'PeaceKoalasTest: Treasury address cannot be the 0x0 address');
+        imx = _imx;
+
+        setBaseURI('https://nft-for-ukraine-five.vercel.app/api/metadata/');
     }
 
-    function setBaseAddress(string memory baseUrl)
-        public
-        onlyOwner
-        returns (string memory)
-    {
-        require(
-            bytes(baseUrl).length > 0,
-            "Cannot set base address with an invalid 'url'."
-        );
-
-        _baseUrl = baseUrl;
-        emit BaseUrlChanged(_baseUrl, baseUrl);
-        return _baseUrl;
+    function mintFor(address user, uint256 quantity, bytes calldata mintingBlob) external override onlyIMX {
+        require(quantity == 1, "PeaceKoalasTest: invalid quantity");
+        (uint256 id, bytes memory blueprint) = Minting.split(mintingBlob);
+        _mintFor(user, id);
+        blueprints[id] = blueprint;
+        emit AssetMinted(user, id, blueprint);
     }
 
-    // The following functions are overrides required by Solidity.
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 tokenId
-    ) internal override(ERC721, ERC721Enumerable) {
-        super._beforeTokenTransfer(from, to, tokenId);
+    function _mintFor(address to, uint256 id) internal virtual {
+        require(!_exists(id), "PeaceKoalasTest: Token ID Has Been Used");
+        _mint(to, id);
     }
 
-    function _burn(uint256 tokenId)
-        internal
-        override(ERC721, ERC721URIStorage)
-    {
-        super._burn(tokenId);
+    function setBaseURI(string memory _URI) public onlyOwner{
+        baseURI = _URI;
+        emit UpdatedBaseURI(_URI);
     }
 
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (string memory)
-    {
-        return super.tokenURI(tokenId);
+    function setIMXAddress(address _imx) public onlyOwner{
+        imx = _imx;
+        emit UpdatedImxURI(_imx);
     }
 
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721, ERC721Enumerable)
-        returns (bool)
-    {
-        return super.supportsInterface(interfaceId);
+    /** OVERRIDES */
+    function _baseURI() internal view override virtual returns (string memory) {
+        return baseURI;
     }
-
-    /**
-     * @dev Emitted when `baseUrl` changed `oldUrl` to `newUrl`.
-     */
-    event BaseUrlChanged(string indexed oldUrl, string indexed newUrl);
 }
