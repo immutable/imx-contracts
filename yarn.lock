@@ -555,6 +555,15 @@
     "@ethersproject/properties" "^5.3.0"
     "@ethersproject/strings" "^5.3.0"
 
+"@imtbl/imx-contracts@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@imtbl/imx-contracts/-/imx-contracts-1.0.1.tgz#61bf04ff0715ae3d3335bf276d119ac7c4c39bb1"
+  integrity sha512-yLC16BWdcmqd22dsXWygAjT792utPf93R1N3W39UmCRpnOwFPBsn1NUSkbjmyffRKFNRKoej9PAeb/X2bPw43w==
+  dependencies:
+    "@nomiclabs/hardhat-etherscan" "^2.1.4"
+    "@openzeppelin/contracts" "^4.1.0"
+    dotenv "^10.0.0"
+
 "@nomiclabs/hardhat-ethers@^2.0.0":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@nomiclabs/hardhat-ethers/-/hardhat-ethers-2.0.2.tgz#c472abcba0c5185aaa4ad4070146e95213c68511"

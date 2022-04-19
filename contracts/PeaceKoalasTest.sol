@@ -4,7 +4,8 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "./Mintable.sol";
+import "@imtbl/imx-contracts/contracts/IMintable.sol";
+import "@imtbl/imx-contracts/contracts/Mintable.sol";
 
 contract PeaceKoalasTest is ERC721, ERC721Enumerable, ERC721URIStorage, Mintable {
     string private _baseUrl;

@@ -14,6 +14,7 @@
     "deploy-registration": "yarn hardhat run deploy/registration.ts"
   },
   "dependencies": {
+    "@imtbl/imx-contracts": "^1.0.1",
     "@nomiclabs/hardhat-etherscan": "^2.1.4",
     "@openzeppelin/contracts": "^4.1.0",
     "dotenv": "^10.0.0"
