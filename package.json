@@ -9,27 +9,28 @@
   "scripts": {
     "compile": "yarn hardhat compile",
     "test": "yarn hardhat test",
-    "simple-deploy-dev": "yarn hardhat run deploy/asset.ts --network dev",
-    "simple-deploy-ropsten": "yarn hardhat run deploy/asset.ts --network ropsten",
+    "local:simple-deploy": "yarn hardhat run deploy/asset.ts --network hardhat",
+    "ropsten:simple-deploy": "yarn hardhat run deploy/asset.ts --network ropsten",
     "deploy-registration": "yarn hardhat run deploy/registration.ts"
   },
   "dependencies": {
     "@imtbl/imx-contracts": "^1.0.1",
-    "@nomiclabs/hardhat-etherscan": "^2.1.4",
     "@openzeppelin/contracts": "^4.1.0",
     "dotenv": "^10.0.0"
   },
   "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.0",
-    "@nomiclabs/hardhat-waffle": "^2.0.0",
-    "@typechain/ethers-v5": "^7.0.1",
-    "@typechain/hardhat": "^2.0.2",
-    "@types/mocha": "^9.0.0",
-    "chai": "^4.2.0",
-    "ethereum-waffle": "^3.0.0",
-    "ethers": "^5.0.0",
-    "hardhat": "^2.4.1",
-    "ts-node": "^10.2.1",
-    "typechain": "^5.0.0"
+    "@nomiclabs/hardhat-ethers": "^2.0.5",
+    "@nomiclabs/hardhat-etherscan": "^2.1.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@typechain/ethers-v5": "^10.0.0",
+    "@typechain/hardhat": "^6.0.0",
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.0",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.4",
+    "ethers": "^5.6.4",
+    "hardhat": "^2.9.3",
+    "ts-node": "^10.7.0",
+    "typechain": "^8.0.0"
   }
 }
