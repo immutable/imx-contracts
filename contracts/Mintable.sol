@@ -13,8 +13,9 @@ abstract contract Mintable is Ownable, IMintable {
 
     constructor(address _owner, address _imx) {
         imx = _imx;
-        require(_owner != address(0), "Owner must not be empty");
-        transferOwnership(_owner);
+        if (_owner != msg.sender) {
+            transferOwnership(_owner);
+        }
     }
 
     modifier onlyOwnerOrIMX() {
